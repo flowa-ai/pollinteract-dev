@@ -6,7 +6,7 @@ logs_total: int = 1
 
 LIMIT: int = 25
 DIRECTORY: str = os.getcwd()
-SUCCESS_PROMPT: str = "Model responded to prompt with this `mmodel_r`, with the help of your functions."
+SUCCESS_PROMPT: str = "Model responded to prompt with this `<?mmodel_r!replace`, with the help of your functions."
 MAIN_PROMPT: str = """
 - Do not mention or explain the system's internal workings or functions unless explicitly asked.
 - You have access to functions to assist with tasks, but the code to call these functions has already been executed.
