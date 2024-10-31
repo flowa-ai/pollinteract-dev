@@ -102,7 +102,7 @@ ctk.set_default_color_theme("dark-blue")
 
 def fetch_response(user_input):
     has_image = False
-    mmodel_r, cmodel_r = pollinteract.generate(user_input, info=True)
+    mmodel_r, cmodel_r = pollinteract.generate(user_input, responses=True)
     parsed = pollinteract._util.parser(cmodel_r)
     files = []
     for p in parsed:
