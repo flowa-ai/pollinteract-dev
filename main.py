@@ -17,11 +17,6 @@ from PIL import Image, ImageDraw, ImageTk
 import pollinteract
 import pollinations
 
-pollinteract.init(f"You have been equipped with resources to:\n Get realtime dates, time, website articles and basic website information. Interact with the directory's files, folders, and code. As well as generate images and graphs. Among other things. `Other things (If specifcally asked): {[_ if not _.startswith('__') else '' for _ in pollinteract.funcs.Functions.__dict__]}`")
-pollinteract.logs("logs.txt")
-
-matplotlib.use("Agg")
-
 # --------------------------------------------------- #
 # --------------------------------------------------- #
 # ----------- CREATE YOUR FUNCTIONS BELOW ----------- #
@@ -95,6 +90,11 @@ image_fs = ["generate_image_default", "generate_graph_or_plot"]
 # ----------- CREATE YOUR FUNCTIONS ABOVE ----------- #
 # --------------------------------------------------- #
 # --------------------------------------------------- #
+
+pollinteract.init(f"You have been equipped with resources to:\n Get realtime dates, time, website articles and basic website information. Interact with the directory's files, folders, and code. As well as generate images and graphs. Among other things. `Other things (If specifcally asked): {[_ if not _.startswith('__') else '' for _ in pollinteract.funcs.Functions.__dict__ + image_fs]}`")
+pollinteract.logs("logs.txt")
+
+matplotlib.use("Agg")
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("dark-blue")
