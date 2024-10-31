@@ -57,8 +57,7 @@ def generate_graph_or_plot(code, filename):
             "Code used:",
             code,
         )
-    except Exception as e:
-        print(f"Error executing code: {e}")
+    except Exception:
         return (
             False,
             "Error occured in saving the file:",
@@ -155,8 +154,8 @@ class PolliWindow:
             )
             self.logo_label.image = logo_img
             self.logo_label.pack(pady=10)
-        except Exception as e:
-            print(f"Logo image not found: {e}")
+        except Exception:
+            pass
         self.header_text = ctk.CTkLabel(
             self.header_frame,
             text=f"Pollinations AI {self.window_type} 🤖",
@@ -331,14 +330,10 @@ class PolliWindow:
                 response = requests.get(image_url)
                 img_data = response.content
                 img = Image.open(io.BytesIO(img_data))
-            except Exception as e:
-                print(
-                    f"Failed to load image from URL {image_url}, trying as a local file: {e}"
-                )
+            except Exception:
                 try:
                     img = Image.open(image_url)
-                except Exception as e:
-                    print(f"Failed to load image from local file {image_url}: {e}")
+                except Exception:
                     continue
 
             img.thumbnail((self.root.winfo_width() // 2, 300))
@@ -533,12 +528,12 @@ class PolliWindow:
             try:
                 for _ in range(5):
                     pollinteract._core.main_model.messages.pop()
-            except Exception as e:
+            except Exception:
                 pass
             try:
                 for _ in range(4):
                     pollinteract._core.code_model.messages.pop()
-            except Exception as e:
+            except Exception:
                 pass
 
 
