@@ -18,7 +18,7 @@ import pollinteract
 import pollinations
 
 pollinteract.init(
-    f"You have been equipped with resources to:\n Get realtime dates, time, website articles and basic website information. Interact, view, and edit directory's files, folders, and code. As well as generate images and graphs. Among other things. `Other things (If specifcally asked): {[_ if not _.startswith('__') else '' for _ in pollinteract.funcs.Functions.__dict__]}`"
+    f"You have been equipped with resources to:\n Get realtime dates, time, website articles and basic website information. Interact, view, and edit directory's files, folders, and code. As well as generate and display (in chat) images and graphs. Among other things. `Other things (If specifcally asked): {[_ if not _.startswith('__') else '' for _ in pollinteract.funcs.Functions.__dict__]}`"
 )
 pollinteract.logs("logs.txt")
 
