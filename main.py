@@ -105,7 +105,11 @@ pollinteract.define(
     description="This will display the image to the user in the chat. Only use to display images when requested. Generate image and generate graph functions already display images, so no need to double display.",
 )
 
-image_fs = ["generate_image_default", "generate_graph_or_plot", "view_image_file_or_url"]
+image_fs = [
+    "generate_image_default",
+    "generate_graph_or_plot",
+    "view_image_file_or_url",
+]
 
 # --------------------------------------------------- #
 # --------------------------------------------------- #
@@ -113,12 +117,12 @@ image_fs = ["generate_image_default", "generate_graph_or_plot", "view_image_file
 # --------------------------------------------------- #
 # --------------------------------------------------- #
 
-ctk.set_appearance_mode("dark")
-ctk.set_default_color_theme("dark-blue")
-
 
 class PolliWindow:
     def __init__(self, root: ctk.CTk):
+        ctk.set_appearance_mode("dark")
+        ctk.set_default_color_theme("dark-blue")
+
         self.window_type = "Chat"
         self.root = root
         self.root.title("pollinations.ai")
@@ -251,7 +255,7 @@ class PolliWindow:
     def newline(self, event):
         self.entry.insert(tk.END, "\n")
         return "break"
-    
+
     def fetch_response(self, user_input):
         has_image = False
         mmodel_r, cmodel_r = pollinteract.generate(user_input, responses=True)
