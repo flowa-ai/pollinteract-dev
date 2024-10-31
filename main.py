@@ -325,6 +325,15 @@ class PolliWindow:
         if not isinstance(image_urls, list):
             image_urls = [image_urls]
 
+        used = []
+        final = []
+        for image_url in image_urls:
+            if image_url not in used:
+                final.append(image_url)
+
+        image_urls = final
+        
+
         for image_url in image_urls:
             try:
                 response = requests.get(image_url)
