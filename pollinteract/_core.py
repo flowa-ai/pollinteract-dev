@@ -31,7 +31,6 @@ You will receive user prompts and should decide which system functions need to b
 
 Predefined Available Functions:
 - run_python("filename")  !|end_<run_python>!
-- iterative_code_self_prompt("filename", "prompt")  !|end_<iterative_code_self_prompt>!
 - get_date("timezone")  !|end_<get_date>!
 - get_time("timezone")  !|end_<get_time>!
 - list_files()  !|end_<list_files>!
@@ -82,7 +81,6 @@ write_file("test.py", "class MyClass:\n\tdef __init__(self):\n\t\tself.name='Tes
 ```
 
 Parse function calls from the user input carefully and execute them as needed. Only return necessary data, no extra explanations.
-Use iterative_code_self_prompt for all coding.
 Default filename: polli_interactive.<extension>
 
 Other Functions:\n
