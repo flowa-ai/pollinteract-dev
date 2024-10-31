@@ -102,7 +102,7 @@ pollinteract.define(
 pollinteract.define(
     view_image_file,
     "filename",
-    description="This will display the image to the user in the chat.",
+    description="This will display the image to the user in the chat. Only use to display images when requested.",
 )
 
 image_fs = ["generate_image_default", "generate_graph_or_plot", "view_image_file"]
