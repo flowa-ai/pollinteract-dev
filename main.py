@@ -129,7 +129,7 @@ class PolliWindow:
         self.header_frame = ctk.CTkFrame(self.root, fg_color=self.bg_color)
         self.header_frame.pack(fill=tk.X, pady=(0, 0))
         try:
-            logo_img = Image.open("ignore/logo_image.png")
+            logo_img = Image.open("polli_logo.png")
             logo_img.thumbnail((100, 100))
             logo_img = ImageTk.PhotoImage(logo_img)
             self.logo_label = tk.Label(
