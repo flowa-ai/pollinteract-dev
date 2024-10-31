@@ -8,7 +8,7 @@ def my_custom_function(filename):
     pollinteract.funcs.Functions.delete_file(filename)
     return True, "This is the output!"
 
-pollinteract.define(my_custom_function, "filename", description="This is the description to my_custom_function. `description` is used to explain what you want the AI to do.")
+pollinteract.define(my_custom_function, "filename")
 
 -----------------------------------------------
 
@@ -34,12 +34,10 @@ Functions:
         Registers a new function within the assistant's system, allowing the assistant 
         to call and use it in response to user queries.
 
-    generate(prompt: str, display: bool = False, verbose: bool = False, log: bool = True, responses: bool = False) -> str | tuple:
+    generate(prompt: str, display: bool = False, verbose: bool = False, log: bool = True) -> str:
         Generates a response from the assistant based on the provided prompt. It can 
         display the response interactively, and optionally log the interaction and 
-        output verbose information during the generation process. If responses
-        argument is True, there will be a tuple of the main model and code model
-        responses returned.
+        output verbose information during the generation process.
 
 
 Example:
@@ -57,7 +55,7 @@ pollinteract.define(my_custom_function, "filename")
 
 while True:
     prompt = input("User:\n> "); print("\nPollInteract:\n> ", end="")
-    pollinteract.generate(prompt=prompt, display=True, verbose=False, log=True, responses=False); print()
+    pollinteract.generate(prompt=prompt, display=True, verbose=False, log=True); print()
 """
 
 
@@ -140,7 +138,7 @@ def define(function: object, *args, description: str=None, **kwargs) -> bool:
     _core.code_model.system = _core.code_prompt
     return True
 
-def generate(prompt: str, display: bool = False, verbose: bool = False, log: bool = True, responses: bool = False) -> str:
+def generate(prompt: str, display: bool = False, verbose: bool = False, log: bool = True, responses: bool = False) -> str | bool:
     """
     Generate a response from the assistant based on a prompt.
 
@@ -152,7 +150,7 @@ def generate(prompt: str, display: bool = False, verbose: bool = False, log: boo
         responses (bool, optional): Whether to send the response from the main model and code model. Defaults to False.
 
     Returns:
-        str: The generated response from the assistant.
+        str | tuple: The generated response(s) from the assistant(s).
     """
     use_log: bool = False
     if _core.logs_file and log:
