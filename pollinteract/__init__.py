@@ -200,7 +200,7 @@ def generate(prompt: str, display: bool = False, verbose: bool = False, log: boo
         log_file.write(f"| {repr(mmodel_r)}\n")
         log_file.close()
 
-    _util.model_append(_core.code_model, _core.SUCCESS_PROMPT.replace("<?mmodel_r!replace", mmodel_r), "assistant")
+    _util.model_append(_core.code_model, _core.SUCCESS_PROMPT.replace("<?mmodel_r!replace", mmodel_r, 1), "assistant")
     _util.prompt_store = ""
     _core.logs_total += 1
     if responses:
