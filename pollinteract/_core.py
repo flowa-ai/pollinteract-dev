@@ -95,17 +95,6 @@ code_model: pollinations.TextModel = None
 def model_init(
     system: str, *args, **kwargs
 ) -> tuple[object, object]:
-    """
-    Initializes the main and code models for the AI assistant with the provided system message.
-
-    Args:
-        system (str): The system message to initialize the models with.
-        *args: Additional positional arguments.
-        **kwargs: Additional keyword arguments.
-
-    Returns:
-        tuple[object, object]: A tuple containing the initialized main_model and code_model.
-    """
     global main_model, code_model
     main_model = pollinations.text(
         system=f"> {system}\n\n" + MAIN_PROMPT,
@@ -123,16 +112,6 @@ def model_init(
 def model_reset(
     *args, **kwargs
 ) -> tuple[object, object]:
-    """
-    Resets the main and code models, clearing their message history and reinitializing with default system prompts.
-
-    Args:
-        *args: Additional positional arguments.
-        **kwargs: Additional keyword arguments.
-
-    Returns:
-        tuple[object, object]: A tuple containing the reset main_model and code_model.
-    """
     global main_model, code_model
     main_model.messages = [main_model.system_create(main_model.system)]
     code_model.messages = [code_model.system_create(code_prompt)]
