@@ -5,17 +5,6 @@ from .funcs import Functions
 prompt_store: str = ""
 
 def model_append(model: object, content: str, role: str) -> object:
-    """
-    Append a new message to a model with the specified role.
-
-    Args:
-        model (object): The model object that stores messages.
-        content (str): The content of the message.
-        role (str): The role of the sender, either 'user', 'assistant', or 'system'.
-
-    Returns:
-        object: The updated model object.
-    """
     if role not in ["user", "assistant"]:
         role = "system"
     model.messages.append({"role": role, "content": content})
@@ -72,15 +61,6 @@ function_keys: dict[str, object] = {
 }
 
 def parser(response):
-    """
-    Parse a response string to extract and tokenize function calls.
-
-    Args:
-        response (str): The response string containing function calls.
-
-    Returns:
-        list[list[str]]: A list of tokenized functions, each represented as a list with the function name and arguments.
-    """
     func_pattern = r"(\w+)\(([\s\S]*?)\)\s*!\|end_<\1>!"
     matches = re.findall(func_pattern, response)
     tokenized_functions = []
