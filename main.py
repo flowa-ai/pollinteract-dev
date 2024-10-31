@@ -102,7 +102,7 @@ pollinteract.define(
 pollinteract.define(
     view_image_file,
     "filename",
-    description="This will display the image to the user in the chat. Only use to display images when requested.",
+    description="This will display the image to the user in the chat. Only use to display images when requested. Generate image and generate graph functions already display images, so no need to double display.",
 )
 
 image_fs = ["generate_image_default", "generate_graph_or_plot", "view_image_file"]
@@ -126,6 +126,7 @@ def fetch_response(user_input):
         if p[0] in image_fs:
             files.append(p[-1])
             has_image = True
+
     return (mmodel_r, has_image, files)
 
 
@@ -329,10 +330,10 @@ class PolliWindow:
         final = []
         for image_url in image_urls:
             if image_url not in used:
+                used.append(image_url)
                 final.append(image_url)
 
         image_urls = final
-        
 
         for image_url in image_urls:
             try:
