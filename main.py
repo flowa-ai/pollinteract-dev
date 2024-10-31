@@ -85,7 +85,7 @@ pollinteract.define(
     generate_graph_or_plot,
     "code",
     "filename",
-    description="No backticks. Libs you can use: matplotlib, numpy and builtin libs. Provide the python code for how you could achieve what the user is trying to graph or plot. Only provide the code, nothing else. Use message context if needed. You must save it to a file instead of a pop-up. Filenames in the code need to relate to what you made or be exactly what the user specified. Also provide the filename in the generate function. Use for all graphing and plotting requests. Don't use for images.",
+    description="No backticks. Libs you can use: matplotlib, numpy and builtin libs. Provide the python code for how you could achieve what the user is trying to graph or plot. Only provide the code, nothing else. Use message context if needed. You must save it to a file instead of a pop-up. File names in the code need to relate to what you made or be exactly what the user specified. Also provide the contextual file name in the generate function. Use for all graphing and plotting requests. Don't use for images.",
 )
 
 image_fs = ["generate_image_default", "generate_graph_or_plot"]
