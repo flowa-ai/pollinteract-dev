@@ -76,11 +76,11 @@ def generate_graph_or_plot(code, filename):
         )
 
 
-def view_image_file(filename):
+def view_image_file_or_url(filename_or_url):
     return (
         True,
         "File name:",
-        filename,
+        filename_or_url,
         "This function only displays images, polli-vision is currently not implemented.",
         "You successfully showed it to the user.",
         "Just tell the user like here you go or here is the image or file.",
@@ -100,12 +100,12 @@ pollinteract.define(
     description="No backticks. Libs you can use: matplotlib, numpy, math, etc and builtin libraries. Provide the python code for how you could achieve what the user is trying to graph or plot. Only provide the code, nothing else. Use message context if needed. You must save it to a file instead of a pop-up. File names in the code need to relate to what you made or be exactly what the user specified. Also provide the contextual file name in the generate function. Use for all graphing and plotting requests. Don't use for images.",
 )
 pollinteract.define(
-    view_image_file,
-    "filename",
+    view_image_file_or_url,
+    "filename_or_url",
     description="This will display the image to the user in the chat. Only use to display images when requested. Generate image and generate graph functions already display images, so no need to double display.",
 )
 
-image_fs = ["generate_image_default", "generate_graph_or_plot", "view_image_file"]
+image_fs = ["generate_image_default", "generate_graph_or_plot", "view_image_file_or_url"]
 
 # --------------------------------------------------- #
 # --------------------------------------------------- #
@@ -115,19 +115,6 @@ image_fs = ["generate_image_default", "generate_graph_or_plot", "view_image_file
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("dark-blue")
-
-
-def fetch_response(user_input):
-    has_image = False
-    mmodel_r, cmodel_r = pollinteract.generate(user_input, responses=True)
-    parsed = pollinteract._util.parser(cmodel_r)
-    files = []
-    for p in parsed:
-        if p[0] in image_fs:
-            files.append(p[-1])
-            has_image = True
-
-    return (mmodel_r, has_image, files)
 
 
 class PolliWindow:
@@ -264,9 +251,21 @@ class PolliWindow:
     def newline(self, event):
         self.entry.insert(tk.END, "\n")
         return "break"
+    
+    def fetch_response(self, user_input):
+        has_image = False
+        mmodel_r, cmodel_r = pollinteract.generate(user_input, responses=True)
+        parsed = pollinteract._util.parser(cmodel_r)
+        files = []
+        for p in parsed:
+            if p[0] in image_fs:
+                files.append(p[-1])
+                has_image = True
+
+        return (mmodel_r, has_image, files)
 
     def new_response(self, user_text):
-        ai_text, has_image, image_url = fetch_response(user_text)
+        ai_text, has_image, image_url = self.fetch_response(user_text)
         if has_image:
             self.was_image = True
         else:
